@@ -70,12 +70,18 @@ func getRows(xlsx *excelize.File, sheetName string) [][]string {
 }
 
 func convertToAlphabetOption(option string) string {
+	fmt.Printf("t1: %T\n", option)
 	options := map[string]string{
-		"1": "a",
-		"2": "b",
-		"3": "c",
-		"4": "d",
-		"5": "e",
+		"1":   "a",
+		"2":   "b",
+		"3":   "c",
+		"4":   "d",
+		"5":   "e",
+		"1.0": "a",
+		"2.0": "b",
+		"3.0": "c",
+		"4.0": "d",
+		"5.0": "e",
 	}
 	return options[option]
 }
