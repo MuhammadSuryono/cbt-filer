@@ -4,7 +4,7 @@ services:
     container_name: cbt-filer
     build: .
     ports:
-      - 8090:8090
+      - 8080:8080
     restart: on-failure
     volumes:
       - api:/usr/src/app/
