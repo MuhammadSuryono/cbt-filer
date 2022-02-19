@@ -36,3 +36,19 @@ func alreadyGroupName(listQuestionId int64, groupName string) (already bool, gro
 	}
 	return
 }
+
+func UpdateGroupQuestion(id int64, listQuestionId int64, groupName, description, fileGroup, questionGroup string) models.GroupQuestion {
+	var group models.GroupQuestion
+	_ = db.Connection.Table("group_question").Where("id = ?", id).First(&group)
+
+	group.Name = groupName
+	group.Description = description
+	if fileGroup != "" {
+		group.FilenameGroup = fileGroup
+	}
+	group.QuestionGroup = questionGroup
+	group.ListQuestionId = listQuestionId
+
+	_ = db.Connection.Table("group_question").Save(&group)
+	return group
+}

@@ -6,6 +6,7 @@ type IExcel interface {
 	ImportExcelToDatabase(c *gin.Context)
 	CreateGroupQuestion(c *gin.Context)
 	Listening(c *gin.Context)
+	UpdateGroupQuestion(c *gin.Context)
 }
 
 type Excel struct {

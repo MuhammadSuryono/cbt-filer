@@ -38,4 +38,5 @@ type ExamQuestion struct {
 type Uri struct {
 	ListQuestionId int64  `json:"list_question_id" uri:"list_question_id"`
 	Filename       string `uri:"filename"`
+	Id             int64  `json:"id" uri:"id"`
 }
