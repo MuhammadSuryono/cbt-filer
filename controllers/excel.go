@@ -4,6 +4,8 @@ import "github.com/gin-gonic/gin"
 
 type IExcel interface {
 	ImportExcelToDatabase(c *gin.Context)
+	CreateGroupQuestion(c *gin.Context)
+	Listening(c *gin.Context)
 }
 
 type Excel struct {

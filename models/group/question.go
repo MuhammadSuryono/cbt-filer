@@ -5,6 +5,13 @@ import (
 	"gtihub.com/MuhammadSuryono/cbt-uploader/models"
 )
 
+type ParameterGroupQuestion struct {
+	ListQuestionId int64  `form:"list_question_id"`
+	Name           string `form:"name"`
+	Description    string `form:"description"`
+	QuestionGroup  string `form:"question_group"`
+}
+
 func CreateGroupQuestion(listQuestionId int64, groupName, description, fileGroup, questionGroup string) models.GroupQuestion {
 	already, group := alreadyGroupName(listQuestionId, groupName)
 	if already {
