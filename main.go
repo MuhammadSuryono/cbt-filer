@@ -18,7 +18,7 @@ func main() {
 		api.POST("/upload/question/:list_question_id", controller.ImportExcelToDatabase)
 		api.POST("/group/question/create", controller.CreateGroupQuestion)
 		api.GET("/group/question/listening/:filename", controller.Listening)
-		api.GET("/group/question/update/:id", controller.UpdateGroupQuestion)
+		api.POST("/group/question/update/:id", controller.UpdateGroupQuestion)
 	}
 
 	server.Run(":8080")
