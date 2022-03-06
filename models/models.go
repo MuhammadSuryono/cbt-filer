@@ -40,3 +40,8 @@ type Uri struct {
 	Filename       string `uri:"filename"`
 	Id             int64  `json:"id" uri:"id"`
 }
+
+type QueryRequest struct {
+	Page int `form:"page"`
+	Size int `form:"size"`
+}

@@ -19,6 +19,7 @@ func main() {
 		api.POST("/group/question/create", controller.CreateGroupQuestion)
 		api.GET("/group/question/listening/:filename", controller.Listening)
 		api.POST("/group/question/update/:id", controller.UpdateGroupQuestion)
+		api.GET("/user/participant/list", controller.ListUserParticipant)
 	}
 
 	server.Run(":8080")

@@ -4,6 +4,7 @@ import (
 	"github.com/MuhammadSuryono/go-helper/db"
 	"gtihub.com/MuhammadSuryono/cbt-uploader/file/excel"
 	"gtihub.com/MuhammadSuryono/cbt-uploader/models"
+	"gtihub.com/MuhammadSuryono/cbt-uploader/models/exam"
 )
 
 func AddExamQuestion(dataExcel excel.TemplateQuestion, groupId int64, listQuestionId int64) {
@@ -20,4 +21,29 @@ func AddExamQuestion(dataExcel excel.TemplateQuestion, groupId int64, listQuesti
 	}
 
 	_ = db.Connection.Table("exam_question").Create(&dataExam)
+}
+
+func GetTotalCorrect(registerNumber string, typeId int64) (totalCorrect int) {
+	category := GetCategoryByTypeExam(typeId)
+	listQuestions := GetListQuestionCategory(category.ID)
+
+	for _, question := range listQuestions {
+		examQuestions := GetExamQuestionByListQuestion(question.ID)
+		for _, examQuestion := range examQuestions {
+			isCorrect := exam.CheckAnswer(registerNumber, examQuestion.Id, examQuestion.Answer)
+			if isCorrect {
+				totalCorrect++
+			}
+		}
+	}
+	return
+}
+
+func GetExamQuestionByListQuestion(listQuestionId int64) (examQuestion []models.ExamQuestion) {
+	db.Connection.Table("exam_question").
+		Where("list_question_id = ?", listQuestionId).
+		Find(&examQuestion)
+
+	return
+
 }

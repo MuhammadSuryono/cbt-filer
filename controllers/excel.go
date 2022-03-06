@@ -7,6 +7,7 @@ type IExcel interface {
 	CreateGroupQuestion(c *gin.Context)
 	Listening(c *gin.Context)
 	UpdateGroupQuestion(c *gin.Context)
+	ListUserParticipant(c *gin.Context)
 }
 
 type Excel struct {
