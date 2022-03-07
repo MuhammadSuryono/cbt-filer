@@ -28,13 +28,8 @@ func GetTotalCorrect(registerNumber string, typeId int64) (totalCorrect int) {
 	listQuestions := GetListQuestionCategory(category.ID)
 
 	for _, question := range listQuestions {
-		examQuestions := GetExamQuestionByListQuestion(question.ID)
-		for _, examQuestion := range examQuestions {
-			isCorrect := exam.CheckAnswer(registerNumber, examQuestion.Id, examQuestion.Answer)
-			if isCorrect {
-				totalCorrect++
-			}
-		}
+		total := CountTotalCorrect(question.ID, registerNumber)
+		totalCorrect += total
 	}
 	return
 }
@@ -46,4 +41,13 @@ func GetExamQuestionByListQuestion(listQuestionId int64) (examQuestion []models.
 
 	return
 
+}
+
+func CountTotalCorrect(lisQuestionId int64, registerNumber string) int {
+	var results []exam.ExamResult
+	_ = db.Connection.Table("exam_result a").Select("a.*").Joins("JOIN exam_question b ON a.exam_question_id = b.id AND a.value = b.answer").
+		Where("b.list_question_id = ? AND a.number_register = ?", lisQuestionId, registerNumber).
+		Find(&results)
+
+	return len(results)
 }

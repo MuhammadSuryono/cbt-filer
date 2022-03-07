@@ -1,6 +1,7 @@
 package exam
 
 import (
+	"fmt"
 	"github.com/MuhammadSuryono/go-helper/db"
 	"math"
 	"time"
@@ -24,6 +25,17 @@ func CheckAnswer(registerNumber string, examQuestionId int64, answerCorrect stri
 	var result ExamResult
 	db.Connection.Table(result.TableName()).Where("number_register = ? AND exam_question_id = ?", registerNumber, examQuestionId).First(&result)
 	if result.ID != 0 {
+		fmt.Println("Check Answer", convAnswer(result.Value), answerCorrect)
+		return convAnswer(result.Value) == answerCorrect
+	}
+	return false
+}
+
+func CheckAnswerNew(registerNumber string, examQuestionId int64, answerCorrect string) bool {
+	var result ExamResult
+	db.Connection.Table(result.TableName()).Where("number_register = ? AND exam_question_id = ?", registerNumber, examQuestionId).First(&result)
+	if result.ID != 0 {
+		fmt.Println("Check Answer", convAnswer(result.Value), answerCorrect)
 		return convAnswer(result.Value) == answerCorrect
 	}
 	return false
