@@ -42,7 +42,7 @@ func (e *ExcelHandler) ReadExcel() ([]TemplateQuestion, error) {
 			case Option5:
 				dataRow.Option5 = colCell
 			case Answer:
-				dataRow.Answer = convertToAlphabetOption(colCell)
+				dataRow.Answer = convertToInteger(colCell)
 			case GroupName:
 				dataRow.GroupName = colCell
 			case GroupDescription:
@@ -69,19 +69,19 @@ func getRows(xlsx *excelize.File, sheetName string) [][]string {
 	return xlsx.GetRows(sheetName)
 }
 
-func convertToAlphabetOption(option string) string {
+func convertToInteger(option string) string {
 	fmt.Printf("t1: %T\n", option)
 	options := map[string]string{
-		"1":   "a",
-		"2":   "b",
-		"3":   "c",
-		"4":   "d",
-		"5":   "e",
-		"1.0": "a",
-		"2.0": "b",
-		"3.0": "c",
-		"4.0": "d",
-		"5.0": "e",
+		"1":   "1",
+		"2":   "2",
+		"3":   "3",
+		"4":   "4",
+		"5":   "5",
+		"1.0": "1",
+		"2.0": "2",
+		"3.0": "3",
+		"4.0": "4",
+		"5.0": "5",
 	}
 	return options[option]
 }

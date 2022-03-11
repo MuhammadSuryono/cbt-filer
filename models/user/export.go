@@ -25,7 +25,7 @@ func ExportToFile(data []UserParticipantResponseWithTypeExam) {
 	xlsx := excelize.NewFile()
 	setHeader(xlsx)
 	setDataBody(xlsx, data)
-	err := xlsx.SaveAs("file_sabtu.xlsx")
+	err := xlsx.SaveAs("file_senin.xlsx")
 	if err != nil {
 		fmt.Println(err)
 	}

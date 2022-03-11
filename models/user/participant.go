@@ -151,7 +151,7 @@ func GetAllDataWithoutPagination() []UserParticipantResponseWithTypeExam {
 	_ = db.Connection.Table("user_peserta").
 		Select("user_peserta.*, session_access.session_name").
 		Joins("join session_access ON user_peserta.session_id = session_access.id").
-		Where("date_register BETWEEN ? AND ?", "2022-03-06 00:01:09", "2022-03-06 23:59:09").
+		Where("date_register BETWEEN ? AND ?", "2022-03-07 00:01:09", "2022-03-07 23:59:09").
 		Find(&participants)
 
 	var results []UserParticipantResponseWithTypeExam
